@@ -1,29 +1,29 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: redis-stedi-dev
+  name: redis-stedi-dev-trenton
 spec:
   ports:
     - port: 6379
       name: redis
   clusterIP: None
   selector:
-    app: redis-stedi-dev
+    app: redis-stedi-dev-trenton
 ---
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: redis-stedi-dev
+  name: redis-stedi-dev-trenton
 spec:
   selector:
     matchLabels:
-      app: redis-stedi-dev  # has to match .spec.template.metadata.labels
+      app: redis-stedi-dev-trenton  # has to match .spec.template.metadata.labels
   serviceName: easy-rent-dev-redis
   replicas: 1
   template:
     metadata:
       labels:
-        app: redis-stedi-dev  # has to match .spec.selector.matchLabels
+        app: redis-stedi-dev-trenton  # has to match .spec.selector.matchLabels
     spec:
       containers:
         - name: easy-rent-dev-redis
