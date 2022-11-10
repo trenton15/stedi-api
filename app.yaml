@@ -119,7 +119,7 @@ metadata:
   name: stedi-nodeport-trenton
 spec:
   selector:
-    app: stedi
+    app: stedi-trenton
   type: NodePort
   ports:
   - port: 80
