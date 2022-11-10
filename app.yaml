@@ -62,31 +62,6 @@ spec:
             periodSeconds: 3
 ---
 
-# apiVersion tells Kubernetes which version of yaml to use
-apiVersion: v1
-# kind tells Kubernetes what kind of obkect to create
-kind: Service
-# metadata contains attributes about the object
-metadata:
-# name is the name of the object we are creating
- name: stedi-trenton-loadbalancer
-# spec is the specification for the object (or the laodbalancer)
-spec:
-# selector tells the netork layer how to find the right pod
-  selector:
-# app tells the selector which app to send traffic to
-    app: stedi-trenton
-# type tells Kubernetes the type of service we want
-# a LoadBalancer distributes netowrk packets to one or more pods
-  type: LoadBalancer
-# ports are a list of ports the LoadBalancer listens on
-  ports:
-# port is the port we want to listen on the network
-    - port: 80
-# target is the prot the pod listens on inside Kubernetes
-      targetPort: 4567
----
-
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
