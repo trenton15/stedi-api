@@ -92,7 +92,7 @@ kind: Ingress
 metadata:
   name: stedi-ingress-trenton
   annotations:
-    kubernetes.io/ingress.global-static-ip-name: stedi-public
+    kubernetes.io/ingress.global-static-ip-name: stedi-public-trenton
     networking.gke.io/managed-certificates: stedi-certificate-trenton
     kubernetes.io/ingress.allow-http: "false"
     kubernetes.io/ingress.class: "gce"
