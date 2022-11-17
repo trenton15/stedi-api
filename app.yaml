@@ -30,6 +30,18 @@ spec:
         - name: stedi-trenton
 # The image is a pre-built file contianing the operating system
           image: gcr.io/team-fire262/stedi-trenton
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-secrets-dev-trenton
+                  key: REDIS_PASS
+            - name: REDIS_HOST
+              value: "redis-stedi-dev-trenton"
+            - name: REDIS_PORT
+              value: "6379"
+            - name: REDIS_DB
+              value: "0"
 # The ports is a list of tcp ports the pod listens on
           ports:
 # The container port is a specific port the pod listens on
