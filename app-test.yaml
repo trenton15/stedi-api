@@ -72,3 +72,42 @@ spec:
             initialDelaySeconds: 10
 # periodSeconds tells Kubernetes how often to check health
             periodSeconds: 3
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: stedi-ingress-trenton
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: stedi-public-trenton
+    networking.gke.io/managed-certificates: stedi-certificate-trenton
+    kubernetes.io/ingress.allow-http: "false"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  defaultBackend:
+    service:
+      name: stedi-nodeport-trenton-test
+      port:
+        number: 80
+---
+
+apiVersion: networking.gke.io/v1
+kind: ManagedCertificate
+metadata:
+  name: stedi-certificate-trenton
+spec:
+  domains:
+    - steditrenton.cit262.com
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: stedi-nodeport-trenton
+spec:
+  selector:
+    app: stedi-trenton-test
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 4567
