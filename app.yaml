@@ -84,11 +84,30 @@ metadata:
     kubernetes.io/ingress.allow-http: "false"
     kubernetes.io/ingress.class: "gce"
 spec:
-  defaultBackend:
-    service:
-      name: stedi-nodeport-trenton
-      port:
-        number: 80
+  rules:
+    - http:
+        paths:
+        - path: /dev
+          pathType: ImplementationSpecific
+          backend:
+            service:
+              name: stedi-nodeport-trenton
+              port:
+                number: 80
+        # - path: /test
+        #   pathType: ImplementationSpecific
+        #   backend:
+        #     service:
+        #       name: my-discounted-products
+        #       port:
+        #         number: 80
+        #   - path: /test
+        #   pathType: ImplementationSpecific
+        #   backend:
+        #     service:
+        #       name: my-discounted-products
+        #       port:
+        #         number: 80
 ---
 
 apiVersion: networking.gke.io/v1
