@@ -86,7 +86,7 @@ metadata:
 spec:
   defaultBackend:
     service:
-      name: stedi-nodeport-trenton
+      name: stedi-nodeport-trenton-test
       port:
         number: 80
 ---
